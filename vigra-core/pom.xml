@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.github.fsj</groupId>
+        <artifactId>vigra</artifactId>
+        <version>1.11.1+nar.1</version>
+    </parent>
+
+    <artifactId>vigra-core</artifactId>
+    <packaging>nar</packaging>
+
+    <name>VIGRA :: Core</name>
+    <description>VIGRA Computer Vision Library - Core Functionality</description>
+
+    <properties>
+        <nar.includefilesonly>true</nar.includefilesonly>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.maven-nar</groupId>
+                <artifactId>nar-maven-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+

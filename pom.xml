@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.fsj</groupId>
+    <artifactId>vigra</artifactId>
+    <version>1.11.1+nar.1</version>
+    <packaging>pom</packaging>
+
+    <name>VIGRA :: Parent</name>
+    <description>VIGRA Computer Vision Library</description>
+
+    <properties>
+        <nar-plugin.version>3.2.3</nar-plugin.version>
+    </properties>
+
+    <modules>
+        <module>vigra-core</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.maven-nar</groupId>
+                <artifactId>nar-maven-plugin</artifactId>
+                <version>${nar-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <cpp>
+                        <debug>false</debug>
+                        <includes>
+                            <include>**/*.hxx</include>
+                            <include>**/*.h</include>
+                            <include>**/*.cxx</include>
+                        </includes>
+                        <options combine.children="append">
+                            <option>-std=c++11</option>
+                            <option>-ftemplate-depth=900</option>
+                            <option>-Wall</option>
+                            <option>-Wextra</option>
+                            <option>-pedantic</option>
+                        </options>
+                    </cpp>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>linux-common</id>
+            <activation>
+                <os><family>linux</family></os>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.maven-nar</groupId>
+                        <artifactId>nar-maven-plugin</artifactId>
+                        <version>${nar-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <cpp>
+                                <options combine.children="append">
+                                    <option>-pthread</option>
+                                </options>
+                            </cpp>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.fsj</groupId>
+                <artifactId>vigra-core</artifactId>
+                <version>${project.version}</version>
+                <type>nar</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
+
